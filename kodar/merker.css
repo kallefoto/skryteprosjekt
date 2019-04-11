@@ -1,0 +1,145 @@
+@charset "UTF-8";
+@import url('https/fonts.googleapis.com/css?family=Lato:300,400,700,900&apos');
+body {
+font-family: "Lato", serif;
+text-decoration: none;
+color: #232323;
+overflow-x: hidden;
+max-width: 100vw;
+background-color: #23232310;
+}
+
+::-webkit-scrollbar {
+    background: #23232330; 
+}
+
+::-webkit-scrollbar-thumb {
+	background: #232323;
+}
+
+img {
+	width: 100%;
+}
+
+.nav {
+	width: 100vw;
+	margin-bottom: 3em;
+	margin-top: 2em;
+}
+
+
+header .nav a{
+	color: #232323;
+	font-size: 1.25em;
+	margin-left: 1.2em;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 4px;
+	border: solid 1.5px #232323;
+	border-radius: .3em;
+	transition: 250ms;
+	background-color: #FFF;
+}
+
+header .nav a:hover {
+	transition: 250ms;
+	color: #232323;
+	border-color: #232323;
+	background-color: #FFF;
+	border: 3px solid;
+}
+
+
+main {
+	max-width: 80vw;
+	background-color: #232323;
+	background-image: linear-gradient(145deg, #eff5f5, rgba(255,255,255,1));
+	margin-left: 10vw;
+	margin-right: 10vw;
+	margin-bottom: 6em;
+	border: #232323 2px solid;
+	padding: 4em;
+	box-shadow: .5em .5em 2em 0 #00000030;
+}
+
+.image_container {
+	width: 70vw;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 3rem;
+}
+
+.image_container .title {
+	grid-column: 1/4;
+	text-align: center;
+	font-size: 4em;
+	text-transform: uppercase;
+	border-bottom: 2px #232323 solid;
+}
+
+.image_container img {
+	width: 90%;
+	height: auto;
+	display: block;
+}
+
+.image_container a {
+	transition: 250ms;
+}
+
+.image_container a:hover {
+	transition: 250ms;
+	opacity: 0.5;
+}
+
+.chat {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin-right: 2em;
+	margin-bottom: 1em;
+	color: #232323;
+	font-size: 1.4em;
+	text-decoration: none;
+	padding: 4px;
+	border: solid 1.5px #232323;
+	border-radius: .3em;
+	transition: 250ms;
+	background-color: #FFF;
+	box-shadow: .5em .5em 2em 0 #00000030;
+}
+
+.chat:hover {
+	transition: 250ms;
+	margin-right: 2.2em;
+	margin-bottom: 1.1em;	
+}
+
+footer {
+	width: 104vw;
+	height: 5rem;
+	background-color: #717164;
+	margin-top: 1em; 
+	color: #FFF;
+	margin-left: -1.57rem;
+	float: left; 
+}
+
+footer .footer_text {
+	margin-left: 2em;
+	padding: 1.8em;
+}
+
+
+@media (max-width: 1380px) {
+	footer {
+		margin-left: -1.8em;
+	}
+}
+
+@media (max-width: 1920px) {
+	footer {
+		width: 107vw;
+	}
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="no">
+	<head>
+		<meta charset="UTF-8">
+		<title>Logg inn</title>
+	</head>
+	
+	<body>
+	    <form name="myForm">
+			<p>Dette er ei webside med avgrensa tilgang.</p>
+			<p>Oppgi passord for å kunne fortsette.</p><br>
+			<input type="password" name="pwd" maxlength="10">
+			<input type="button" onclick="sjekkPassord()" value="Logg inn">
+		</form> 
+	  
+	  <script>
+		function sjekkPassord() {
+			var x = document.forms["myForm"]["pwd"].value;
+			if (x == "Polen") {
+				window.location.assign("home.html");
+			}
+			else if (x == ""){
+				alert("Please type your password");  
+			}
+			else{
+				alert("Incorrect password, try again");
+			}
+		}
+	  </script>	
+	  
+	</body>	
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Hielo</title>
+	<link rel="stylesheet" type="text/css" href="chat.css">
+
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyA1M-W3JQtfumSM2r2Uyy2Pn3AL9-STAJc",
+	    authDomain: "skryteprosjekt-e2588.firebaseapp.com",
+	    databaseURL: "https://skryteprosjekt-e2588.firebaseio.com",
+	    projectId: "skryteprosjekt-e2588",
+	    storageBucket: "skryteprosjekt-e2588.appspot.com",
+	    messagingSenderId: "1082185198446"
+	  };
+	  firebase.initializeApp(config);
+	</script>	
+
+</head>
+
+<body>
+
+	<header>
+	<div class="nav">
+		<nav>
+			<a href="home.html">framside</a>
+			<a href="merker.html">merker</a>
+			<a href="favoritt.html">favoritt</a>
+			<a href="dinbil.html">Din Bil</a>
+		</nav>
+	</div>
+	</header>
+
+
+<main>
+		<div class="title">Chat med fellesskapet</div>
+		<div class="under_title"></div>	
+
+		<div class="main"> <form id="skjema"> <input class="style" type="text" id="inpSendar" required placeholder="Namn"> <input type="text" id="inpMeining" required placeholder="Nokre tankar?"><button type="submit" class="button style">Send</button>
+		</form> <article class="article" id="txtMeldingar"></article></div>
+
+		<script>
+			let database = firebase.database(); let meldingar = database.ref("meldingar"); let skjema = document. getElementById("skjema"); let inpSendar = document. getElementById("inpSendar"); let inpMeining = document. getElementById("inpMeining"); let txtMeldingar = document. getElementById("txtMeldingar"); function visMelding(snapshot) { let melding = snapshot.val(); let meldingTekst = `<p> <b>${melding.sendar}: </b> <i>${melding.tekst}</i>
+			</p>`; txtMeldingar.innerHTML = meldingTekst + txtMeldingar.innerHTML ;
+			}
+			function regNyMelding(evt) { evt.preventDefault(); var nyMelding = { sendar: inpSendar.value, tekst: inpMeining.value
+			};
+			meldingar.push(nyMelding); inpMeining.value = " ";
+			}
+			meldingar.on("child_added", visMelding); skjema.onsubmit = regNyMelding;
+		</script>
+	
+</main>
+
+
+	<footer>
+		<div class="footer_text">Copyright © 2018 Endre Stedje All Rights Reserved.</div>
+	</footer>	
+
+</body>
+
+</html>
