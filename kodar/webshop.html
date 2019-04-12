@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="nb">
+    <head>
+        <meta charset="UTF-8">
+        <title>Nettbutikken HTML utan CSS</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <button onclick="visAlleVarer()">Alle varer</button>
+                <button onclick="visBukser()">Bukser</button>
+                <button onclick="visSkjorter()">Skjorter</button>
+                <button>Handlekurv</button>
+                <button>Tøm handlekurv</button>
+                <button onclick="visBuksermellom()">Bukser 200-500kr</button>
+                <button onclick="visBuksertre()">Tre billige bukser</button>
+                <input oninput="sok()" id="sokefelt" type="text">
+               	<link rel="stylesheet" type="text/css" href="webshop.css">
+            </nav>
+        </header>
+        <main></main>
+        
+		
+		<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyA29FF0aW0z7kZftPZKb8P7uHBs7EX2JLA",
+		    authDomain: "webshop-dc53a.firebaseapp.com",
+		    databaseURL: "https://webshop-dc53a.firebaseio.com",
+		    projectId: "webshop-dc53a",
+		    storageBucket: "webshop-dc53a.appspot.com",
+		    messagingSenderId: "791325868128"
+		  };
+		  firebase.initializeApp(config);
+		</script>
+		
+        <script>
+            let database = firebase.database();
+            let bukser = database.ref("varer/bukser");
+            let skjorter = database.ref("varer/skjorter");
+            var sokefelt = document.getElementById("sokefelt");
+            var soeketekst ="";
+            let main = document.querySelector("main");
+            function visVare(snapshot) {
+                let vare = snapshot.val();
+                main.innerHTML += 
+					`<article>
+                        <img src="../bilder/${vare.bilde}">
+                        <h1>${vare.merke} ${vare.modell}</h1>
+                        <p>Pris: ${vare.pris} kr</p>
+                    </article>`;
+            }
+            
+             sokefelt.oninput = sok;
+            function sok () {
+                soeketekst=sokefelt.value;
+                visBukser();
+                visSkjorter();
+            }
+
+            visAlleVarer();
+            function visAlleVarer() {
+                main.innerHTML = " "; //Fjerner alt innhold i main
+                bukser.on("child_added", visVare);
+                skjorter.on("child_added", visVare);
+            }
+            function visBukser() {
+                main.innerHTML = "";
+                bukser
+                    .orderByChild("merke")
+                    .startAt(soeketekst)
+                    .endAt(soeketekst + '\uf8ff')
+                    .on("child_added", visVare);
+            }
+            function visSkjorter() {
+                main.innerHTML = " ";
+                skjorter.on("child_added", visVare);
+               	skjorter
+                    .orderByChild("merke")
+                    .startAt(soeketekst)
+                    .endAt(soeketekst + '\uf8ff')
+                    .on("child_added", visVare);
+            }
+            function visBuksermellom() {
+            	main.innerHTML = "";
+            	bukser
+            	.orderByChild("pris") 
+            	.startAt(200) .endAt(500) 
+            	.on("child_added", visVare);
+            }
+            function visBuksertre() {
+            	main.innerHTML = "";
+            	bukser
+				.orderByChild("pris") 
+				.limitToFirst(3) 
+				.on("child_added", visVare);
+            }
+           
+        </script>
+    </body>
+</html>
