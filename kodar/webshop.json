@@ -1,13 +1,13 @@
 { 
  "varer" : {
-    "buick" : {
-      "buick" : {
+    "bukser" : {
+      "bukse001" : {
         "merke" : "Olabukse",
         "modell" : "Stretchy",
         "pris" : 490,
         "bilde" : "buick.jpg"
       },
-      "buick" : {
+      "bukse002" : {
         "merke" : "Kortbukse",
         "modell" : "Steinvaska",
         "pris" : 580,
@@ -154,10 +154,10 @@
   },
   "skjorter" : {
       "skjorte001" : {
-        "merke" : "Rutete",
+        "merke" : "Buick",
         "modell" : "Rett",
         "pris" : 480,
-        "bilde" : "skjorte001.jpg"
+        "bilde" : "buick.jpg"
       },
       "skjorte002" : {
         "merke" : "Stripete",
